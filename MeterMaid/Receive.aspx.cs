@@ -18,8 +18,8 @@ namespace MeterMaid
 
             Account account = new Account(ConfigurationManager.AppSettings["TwilioAccountSid"], ConfigurationManager.AppSettings["TwilioAuthToken"]);
 
-            if (Request["Body"].Trim() == "" ||
-                Request["Body"].Trim() == "help")
+            if (Request["Body"].Trim().ToLower() == "" ||
+                Request["Body"].Trim().ToLower() == "help")
             {
                 Hashtable values2 = new Hashtable();
                 values2.Add("To", Request["From"]);
