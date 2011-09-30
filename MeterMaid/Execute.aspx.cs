@@ -14,6 +14,11 @@ namespace MeterMaid
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Execute.ExecuteReminders();
+        }
+
+        public static void ExecuteReminders()
+        {
             DatabaseDataContext db = new DatabaseDataContext();
 
             Account account = new Account(ConfigurationManager.AppSettings["TwilioAccountSid"], ConfigurationManager.AppSettings["TwilioAuthToken"]);
