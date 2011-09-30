@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Collections;
+using TwilioRest;
 
 namespace MeterMaid
 {
@@ -13,16 +16,39 @@ namespace MeterMaid
         {
             DatabaseDataContext db = new DatabaseDataContext();
 
-            Reminder data = new Reminder();
+            Account account = new Account(ConfigurationManager.AppSettings["TwilioAccountSid"], ConfigurationManager.AppSettings["TwilioAuthToken"]);
+            
+            try
+            {
+                Reminder data = new Reminder();
 
-            data.ReminderID = Guid.NewGuid();
-            data.PhoneNumber = Request["From"];
-            data.DueTime = ParseDueTime(Request["Body"]);
-            data.CreatedDate = DateTime.UtcNow;
+                data.ReminderID = Guid.NewGuid();
+                data.PhoneNumber = Request["From"];
+                data.DueTime = ParseDueTime(Request["Body"]);
+                data.CreatedDate = DateTime.UtcNow;
 
-            db.Reminders.InsertOnSubmit(data);
+                db.Reminders.InsertOnSubmit(data);
 
-            db.SubmitChanges();
+                db.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Hashtable values1 = new Hashtable();
+                values1.Add("To", Request["From"]);
+                values1.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                values1.Add("Body", "I couldn't understand that, please try again.");
+
+                account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values1);
+
+                return;
+            }
+
+            Hashtable values2 = new Hashtable();
+            values2.Add("To", Request["From"]);
+            values2.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+            values2.Add("Body", "OK, got it. I will text you 15 minutes before your meter expires.");
+
+            account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values2);
         }
 
         private DateTime ParseDueTime(string value)
