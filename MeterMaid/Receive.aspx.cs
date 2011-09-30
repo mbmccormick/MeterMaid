@@ -60,8 +60,14 @@ namespace MeterMaid
 
             switch (unit)
             {
+                case "minute":
+                    result = result.AddMinutes(duration);
+                    break;
                 case "minutes":
                     result = result.AddMinutes(duration);
+                    break;
+                case "hour":
+                    result = result.AddHours(duration);
                     break;
                 case "hours":
                     result = result.AddHours(duration);
