@@ -24,7 +24,7 @@ namespace MeterMaid
                 Hashtable values2 = new Hashtable();
                 values2.Add("To", Request["From"]);
                 values2.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                values2.Add("Body", "Hi I'm Meter Maid. Send me a text with how long your parking meter is set for and I will remind you before it expires. Example: \"2 hours\" or \"30 minutes\".");
+                values2.Add("Body", "Hi I'm Meter Maid. Send me a text with how much time your parking meter has left and I will remind you before it expires. Example: \"2 hours\" or \"30 minutes\".");
 
                 account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values2);
             }
