@@ -28,7 +28,7 @@ namespace MeterMaid
                 Hashtable data = new Hashtable();
                 data.Add("To", r.PhoneNumber);
                 data.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                data.Add("Body", "Your parking meter will expire in 15 minutes.");
+                data.Add("Body", "Your parking meter will expire in " + r.DueTime.Subtract(DateTime.UtcNow).Minutes + " minutes.");
 
                 account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", data);
 

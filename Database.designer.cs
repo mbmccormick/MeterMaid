@@ -84,9 +84,9 @@ namespace MeterMaid
 		
 		private string _PhoneNumber;
 		
-		private System.Nullable<System.DateTime> _DueTime;
+		private System.DateTime _DueTime;
 		
-		private System.Nullable<System.DateTime> _CreatedDate;
+		private System.DateTime _CreatedDate;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -96,9 +96,9 @@ namespace MeterMaid
     partial void OnReminderIDChanged();
     partial void OnPhoneNumberChanging(string value);
     partial void OnPhoneNumberChanged();
-    partial void OnDueTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnDueTimeChanging(System.DateTime value);
     partial void OnDueTimeChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanging(System.DateTime value);
     partial void OnCreatedDateChanged();
     #endregion
 		
@@ -127,7 +127,7 @@ namespace MeterMaid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(25)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
 		public string PhoneNumber
 		{
 			get
@@ -147,8 +147,8 @@ namespace MeterMaid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DueTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DueTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DueTime", DbType="DateTime NOT NULL")]
+		public System.DateTime DueTime
 		{
 			get
 			{
@@ -167,8 +167,8 @@ namespace MeterMaid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
 		{
 			get
 			{

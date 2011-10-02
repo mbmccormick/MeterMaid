@@ -50,7 +50,7 @@ namespace MeterMaid
         private void AddTask(string name, int seconds)
         {
             OnCacheRemove = new CacheItemRemovedCallback(CacheItemRemoved);
-            HttpRuntime.Cache.Insert(name, seconds, null, DateTime.Now.AddSeconds(seconds), Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, OnCacheRemove);
+            HttpRuntime.Cache.Insert(name, seconds, null, DateTime.UtcNow.AddSeconds(seconds), Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, OnCacheRemove);
         }
 
         public void CacheItemRemoved(string k, object v, CacheItemRemovedReason r)
