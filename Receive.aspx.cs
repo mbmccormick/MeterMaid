@@ -37,7 +37,7 @@ namespace MeterMaid
                     Hashtable values2 = new Hashtable();
                     values2.Add("To", r.PhoneNumber);
                     values2.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                    values2.Add("Body", "You have " + r.DueTime.Subtract(DateTime.UtcNow).Minutes + " minutes left on your parking meter.");
+                    values2.Add("Body", "You have " + r.DueTime.Subtract(DateTime.UtcNow).TotalMinutes + " minutes left on your parking meter.");
 
                     account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values2);
                 }
