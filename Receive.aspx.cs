@@ -32,7 +32,7 @@ namespace MeterMaid
             {
                 try
                 {
-                    Reminder r = db.Reminders.Where(z => z.PhoneNumber == Request["From"]).First();
+                    Reminder r = db.Reminders.Where(z => z.PhoneNumber == Request["From"]).OrderByDescending(z => z.CreatedDate).First();
 
                     Hashtable values2 = new Hashtable();
                     values2.Add("To", r.PhoneNumber);
@@ -49,6 +49,36 @@ namespace MeterMaid
                     values3.Add("Body", "You do not have an active parking meter!");
 
                     account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values3);
+
+                    return;
+                }
+            }
+            else if (Request["Body"].Trim().ToLower() == "cancel")
+            {
+                try
+                {
+                    foreach (Reminder r in db.Reminders.Where(z => z.PhoneNumber == Request["From"]))
+                    {
+                        db.Reminders.DeleteOnSubmit(r);
+                    }
+
+                    db.SubmitChanges();
+
+                    Hashtable values4 = new Hashtable();
+                    values4.Add("To", Request["From"]);
+                    values4.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                    values4.Add("Body", "OK, I have canceled the reminder for your parking meter.");
+
+                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values4);
+                }
+                catch (Exception ex)
+                {
+                    Hashtable values5 = new Hashtable();
+                    values5.Add("To", Request["From"]);
+                    values5.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                    values5.Add("Body", "You do not have an active parking meter!");
+
+                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values5);
 
                     return;
                 }
@@ -70,22 +100,22 @@ namespace MeterMaid
                 }
                 catch (Exception ex)
                 {
-                    Hashtable values4 = new Hashtable();
-                    values4.Add("To", Request["From"]);
-                    values4.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                    values4.Add("Body", "I couldn't understand that, please try again. Text \"help\" for more information.");
+                    Hashtable values6 = new Hashtable();
+                    values6.Add("To", Request["From"]);
+                    values6.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                    values6.Add("Body", "I couldn't understand that, please try again. Text \"help\" for more information.");
 
-                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values4);
+                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values6);
 
                     return;
                 }
 
-                Hashtable values5 = new Hashtable();
-                values5.Add("To", Request["From"]);
-                values5.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                values5.Add("Body", "OK, got it. I will text you 15 minutes before your meter expires.");
+                Hashtable values7 = new Hashtable();
+                values7.Add("To", Request["From"]);
+                values7.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                values7.Add("Body", "OK, got it. I will text you 15 minutes before your meter expires.");
 
-                account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values5);
+                account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values7);
             }
         }
 
