@@ -55,6 +55,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Execute.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Theme\Stylesheet.css" />
     <Content Include="Receive.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -65,7 +66,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.designer.cs">
+    <Compile Include="Common\Database.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
@@ -95,10 +96,10 @@
     <Compile Include="Receive.aspx.designer.cs">
       <DependentUpon>Receive.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TwilioRest.cs" />
+    <Compile Include="Common\TwilioRest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database.dbml">
+    <None Include="Common\Database.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Database.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -108,7 +109,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Database.dbml.layout">
+    <None Include="Common\Database.dbml.layout">
       <DependentUpon>Database.dbml</DependentUpon>
     </None>
   </ItemGroup>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>MeterMaid</title>
-    <link rel="Stylesheet" href="main.css" />
+    <link rel="Stylesheet" href="/Theme/Stylesheet.css" />
 </head>
 <body>
     <form id="form1" runat="server">
