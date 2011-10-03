@@ -9,6 +9,21 @@
     width: 100%;
     text-align: center;
     text-shadow: #ffffff 0px 2px 0px;
+    padding: 40px 0px;
+}
+
+#phone h1 
+{
     color: #4d4d4d;
     font-size: 62px;
+    margin: 0;
+    padding: 0;
+}
+
+#phone h2 
+{
+    color: #4d90fe;
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
 }
