@@ -27,3 +27,19 @@
     margin: 0;
     padding: 0;
 }
+
+.content
+{
+    width: 60%;
+    text-align: center;
+    text-shadow: #ffffff 0px 2px 0px;
+    padding: 0px;
+    margin: 0px auto;
+}
+
+.content h3
+{
+    color: #a0a0a0;
+    font-size: 22px;
+    line-height: 2em;
+}

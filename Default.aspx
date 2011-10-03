@@ -15,6 +15,12 @@
         <h1>
             815-600-PARK</h1>
     </div>
+    <div class="content">
+        <h3>
+            Send a text to 815-600-PARK with how much time your parking meter has left and MeterMaid
+            will remind you before it expires. Example: "2 hours" or "30 minutes".
+        </h3>
+    </div>
     </form>
 </body>
 </html>
