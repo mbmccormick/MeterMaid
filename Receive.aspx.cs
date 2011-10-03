@@ -28,6 +28,24 @@ namespace MeterMaid
 
                 account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values1);
             }
+            else if (Request["Body"].Trim().ToLower() == "time")
+            {
+                try
+                {
+                    Reminder r = db.Reminders.Where(z => z.PhoneNumber == Request["From"]).First();
+
+                    Hashtable data = new Hashtable();
+                    data.Add("To", r.PhoneNumber);
+                    data.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                    data.Add("Body", "You have " + r.DueTime.Subtract(DateTime.UtcNow).Minutes + " minutes left on your parking meter.");
+
+                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", data);
+                }
+                catch (Exception ex)
+                {
+                    // could not be found
+                }
+            }
             else
             {
                 try
@@ -48,7 +66,7 @@ namespace MeterMaid
                     Hashtable values2 = new Hashtable();
                     values2.Add("To", Request["From"]);
                     values2.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                    values2.Add("Body", "I couldn't understand that, please try again.");
+                    values2.Add("Body", "I couldn't understand that, please try again. Text \"help\" for more information.");
 
                     account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values2);
 
