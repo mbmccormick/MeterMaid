@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{55259904-12F0-4D3E-B115-4DBF890D0400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundWorker", "..\BackgroundWorker\BackgroundWorker.csproj", "{3D31D5E5-C4A5-42F9-AA47-C8A718F9B7BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundWorker", "BackgroundWorker\BackgroundWorker.csproj", "{3D31D5E5-C4A5-42F9-AA47-C8A718F9B7BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
