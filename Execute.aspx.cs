@@ -23,7 +23,7 @@ namespace MeterMaid
 
             Account account = new Account(ConfigurationManager.AppSettings["TwilioAccountSid"], ConfigurationManager.AppSettings["TwilioAuthToken"]);
 
-            foreach (Reminder r in db.Reminders.Where(z => z.DueTime <= DateTime.UtcNow.AddMinutes(16)))
+            foreach (Reminder r in db.Reminders.Where(z => z.DueTime <= DateTime.UtcNow.AddMinutes(15)))
             {
                 Hashtable data = new Hashtable();
                 data.Add("To", r.PhoneNumber);
