@@ -22,7 +22,7 @@ namespace MeterMaid
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db9852504d89194cef96fb9f6e00e7aa07")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="metermaid")]
 	public partial class DatabaseDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace MeterMaid
     #endregion
 		
 		public DatabaseDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["db9852504d89194cef96fb9f6e00e7aa07ConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["metermaid"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
