@@ -68,6 +68,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Database.cs">
+      <DependentUpon>Database.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Common\Database.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Collections;
 using TwilioRest;
+using MeterMaid.Common;
 
 namespace MeterMaid
 {
@@ -85,30 +86,30 @@ namespace MeterMaid
             }
             else
             {
-                // try
-                // {
-                Reminder data = new Reminder();
+                try
+                {
+                    Reminder data = new Reminder();
 
-                data.ReminderID = Guid.NewGuid();
-                data.PhoneNumber = Request["From"];
-                data.DueTime = ParseDueTime(Request["Body"]);
-                data.CreatedDate = DateTime.UtcNow;
+                    data.ID = Guid.NewGuid();
+                    data.PhoneNumber = Request["From"];
+                    data.DueTime = ParseDueTime(Request["Body"]);
+                    data.CreatedDate = DateTime.UtcNow;
 
-                db.Reminders.InsertOnSubmit(data);
+                    db.Reminders.InsertOnSubmit(data);
 
-                db.SubmitChanges();
-                // }
-                // catch (Exception ex)
-                // {
-                //     Hashtable values6 = new Hashtable();
-                //     values6.Add("To", Request["From"]);
-                //     values6.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
-                //     values6.Add("Body", "I couldn't understand that, please try again. Text \"help\" for more information.");
-                // 
-                //     account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values6);
-                // 
-                //     return;
-                // }
+                    db.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    Hashtable values6 = new Hashtable();
+                    values6.Add("To", Request["From"]);
+                    values6.Add("From", ConfigurationManager.AppSettings["TwilioNumber"]);
+                    values6.Add("Body", "I couldn't understand that, please try again. Text \"help\" for more information.");
+
+                    account.request(string.Format("/2010-04-01/Accounts/{0}/SMS/Messages", ConfigurationManager.AppSettings["TwilioAccountSid"]), "POST", values6);
+
+                    return;
+                }
 
                 Hashtable values7 = new Hashtable();
                 values7.Add("To", Request["From"]);
