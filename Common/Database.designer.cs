@@ -36,7 +36,7 @@ namespace MeterMaid.Common
     #endregion
 		
 		public DatabaseDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["db9852504d89194cef96fb9f6e00e7aa07ConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["metermaid"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
