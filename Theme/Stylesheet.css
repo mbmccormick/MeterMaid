@@ -60,6 +60,11 @@
         font-size: 12px;
     }
 
+    #content
+    {
+        width: 80%;
+    }
+
     #content h3
     {
         font-size: 1.6em;
