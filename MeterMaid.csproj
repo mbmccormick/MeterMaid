@@ -55,6 +55,9 @@
     <Content Include="Default.aspx" />
     <Content Include="Execute.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Theme\meter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Theme\Stylesheet.css" />
     <Content Include="Receive.aspx" />
     <Content Include="Web.config">

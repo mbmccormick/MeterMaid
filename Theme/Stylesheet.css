@@ -1,7 +1,8 @@
-﻿body 
+﻿body
 {
     background-color: #ececec;
     font-family: Helvetica, Arial;
+    overflow: hidden;
 }
 
 #phone
@@ -12,34 +13,105 @@
     padding: 40px 0px;
 }
 
-#phone h1 
+#phone h1
 {
     color: #4d4d4d;
-    font-size: 128px;
+    font-size: 8em;
     margin: 0;
     padding: 0;
 }
 
-#phone h2 
+#phone h2
 {
     color: #4d90fe;
-    font-size: 56px;
+    font-size: 4em;
     margin: 0;
     padding: 0;
 }
 
-.content
+#content
 {
     width: 60%;
     text-align: center;
     text-shadow: #ffffff 0px 2px 0px;
     padding: 0px;
-    margin: 0px auto;
+    margin: -10px auto;
 }
 
-.content h3
+#content h3
 {
     color: #a0a0a0;
-    font-size: 18px;
+    font-size: 1.2em;
     line-height: 1.6em;
+}
+
+#meter
+{
+    padding-top: 10px;
+    position: absolute;
+    left: 50%;
+    margin-left: -319px;
+}
+
+@media screen and (max-width:875px)
+{
+    body
+    {
+        font-size: 12px;
+    }
+
+    #content h3
+    {
+        font-size: 1.6em;
+    }
+}
+
+@media screen and (max-width:675px)
+{
+    body
+    {
+        font-size: 10px;
+    }
+
+    #content h3
+    {
+        font-size: 1.92em;
+    }
+}
+
+@media screen and (max-width:575px)
+{
+    body
+    {
+        font-size: 8px;
+    }
+
+    #phone
+    {
+        padding-top: 0px;
+    }
+
+    #phone h1
+    {
+        font-size: 5em;
+    }
+
+    #content
+    {
+        width: 100%;
+    }
+
+    #content h3
+    {
+        font-size: 1.92em;
+    }
+
+    #meter
+    {
+        padding-top: 10px;
+        position: relative;
+        max-width: 100%;
+        margin-left: 0px;
+        left: 0;
+    }
 }
