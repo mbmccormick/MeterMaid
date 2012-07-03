@@ -73,6 +73,11 @@
         font-size: 10px;
     }
 
+    #content
+    {
+        width: 80%;
+    }
+
     #content h3
     {
         font-size: 1.92em;
